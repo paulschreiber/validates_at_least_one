@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
 	has_many :languages
 
 	validates_presence_of :name
-	validates_at_least_one :languages, :message => "enter at least on language"
+	validates_at_least_one :languages, :message => "enter at least one language"
 end
 
 p = Person.new(:name => "Bob")
