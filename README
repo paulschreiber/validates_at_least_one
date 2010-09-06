@@ -1,0 +1,32 @@
+Validates at Least One
+======================
+
+When validating a has_many relationship, you might want to ensure at least one of the related items is valid.
+
+Example
+=======
+
+class Language < ActiveRecord::Base
+	belongs_to :person
+	validates_presence_of :name
+end
+
+class Person < ActiveRecord::Base
+	has_many :languages
+
+	validates_presence_of :name
+	validates_at_least_one :languages, :message => "enter at least on language"
+end
+
+p = Person.new(:name => "Bob")
+p.valid?   # false
+p.languages << Language.new
+p.valid?   # false
+p.languages << Language.new
+p.valid?   # false
+p.language.first.name = 'en'
+p.valid?   # true
+
+
+
+Copyright (c) 2010 Paul Schreiber, released under the MIT license
