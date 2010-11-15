@@ -3,6 +3,9 @@ Validates at Least One
 
 When validating a has_many relationship, you might want to ensure at least one of the related items is valid.
 
+Set :base_message => true and :message => "Blah blah" to display an error message for the entire object
+Set :attribute_messages => true to display the individual attribute error messages.
+
 Example
 =======
 
@@ -16,6 +19,13 @@ class Person < ActiveRecord::Base
 
 	validates_presence_of :name
 	validates_at_least_one :languages, :message => "enter at least one language"
+end
+
+class Person < ActiveRecord::Base
+	has_many :languages
+
+	validates_presence_of :name
+	validates_at_least_one :languages, :base_message => false, :attribute_messages => true
 end
 
 p = Person.new(:name => "Bob")
