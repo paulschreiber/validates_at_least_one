@@ -10,6 +10,8 @@ module ActiveRecord
 
         validates_each(args, configuration) do |record, attr_name, value|
           unless value.select{|s| s.valid?}.size > 0
+            next if value.empty?
+            
             # the overall error about the invalid object
             record.errors.add(attr_name, configuration[:message]) if configuration[:base_message]
 
