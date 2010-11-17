@@ -5,6 +5,7 @@ When validating a has_many relationship, you might want to ensure at least one o
 
 Set :base_message => true and :message => "Blah blah" to display an error message for the entire object
 Set :attribute_messages => true to display the individual attribute error messages.
+Set :required_field to an attribute of your object, i.e. :name to display the base message if that field is blank and the attribute messages otherwise.
 
 Example
 =======
@@ -25,7 +26,9 @@ class Person < ActiveRecord::Base
 	has_many :languages
 
 	validates_presence_of :name
-	validates_at_least_one :languages, :base_message => false, :attribute_messages => true
+	validates_at_least_one :languages,
+		:base_message => false, :attribute_messages => true,
+		:message => "enter at least one language"
 end
 
 p = Person.new(:name => "Bob")
