@@ -1,1 +1,1 @@
-require 'validates_at_least_one'
+require File.join(File.dirname(__FILE__), 'lib/validates_at_least_one')
