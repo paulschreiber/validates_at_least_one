@@ -4,7 +4,7 @@ module ActiveRecord
 
       def validates_at_least_one(*args)
         configuration = {
-                          :on => :save, :with => nil,
+                          :with => nil,
                           :base_message => true, :attribute_messages => true, :required_field => false
                         }
         configuration.update(args.pop) if args.last.is_a?(Hash)
